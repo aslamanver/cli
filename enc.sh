@@ -1,5 +1,7 @@
 #!/bin/bash
 
+set -e
+
 read -p "Encrypt (e) or Decrypt (d)? " choice
 read -p "File name: " file
 
@@ -16,7 +18,6 @@ case $choice in
         echo "Decrypted: $output"
         if [[ "$output" == *.tar.gz ]]; then
             echo "Archive contents:"
-            echo "============================="
             tar -tzf "$output"
         fi
         ;;
