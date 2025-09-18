@@ -15,10 +15,9 @@ case $choice in
         openssl enc -d -aes-256-cbc -salt -pbkdf2 -iter 2000000 -in "$file" -out "$output"
         echo "Decrypted: $output"
         if [[ "$output" == *.tar.gz ]]; then
-            echo
-            echo "Extracting archive contents:"
+            echo "Archive contents:"
             echo "============================="
-            tar -xvzf "$output"
+            tar -tzf "$output"
         fi
         ;;
     *)
