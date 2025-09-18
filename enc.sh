@@ -14,7 +14,7 @@ case $choice in
         output="${file%.enc}"
         openssl enc -d -aes-256-cbc -salt -pbkdf2 -iter 2000000 -in "$file" -out "$output"
         echo "Decrypted: $output"
-        if [[ "$output" == *.tar.gz.enc ]]; then
+        if [[ "$output" == *.tar.gz ]]; then
             echo
             echo "Extracting archive contents:"
             echo "============================="
