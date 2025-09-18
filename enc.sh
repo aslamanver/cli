@@ -16,9 +16,9 @@ case $choice in
         echo "Decrypted: $output"
         if [[ "$output" == *.tar.gz.enc ]]; then
             echo
-            echo "Archive contents:"
-            echo "=================="
-            tar -xzf "$output"
+            echo "Extracting archive contents:"
+            echo "============================="
+            tar -xvzf "$output"
         fi
         ;;
     *)
