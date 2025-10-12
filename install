@@ -14,9 +14,7 @@ set -e
 REPO_URL="https://github.com/aslamanver/cli"
 INSTALL_DIR="$HOME/.cli"
 
-# ----------------------------------------------------------
 # 🧩 Check for required dependencies
-# ----------------------------------------------------------
 for cmd in curl tar; do
   if ! command -v $cmd >/dev/null 2>&1; then
     echo "❌ '$cmd' is required but not installed."
@@ -26,32 +24,22 @@ done
 
 echo "🚀 Installing CLI tools from $REPO_URL ..."
 
-# ----------------------------------------------------------
 # 📁 Create install directory
-# ----------------------------------------------------------
 mkdir -p "$INSTALL_DIR"
 
-# ----------------------------------------------------------
 # ⬇️  Download all files together as tar.gz from main branch
-# ----------------------------------------------------------
 echo "⬇️  Downloading repository archive..."
 curl -fsSL "$REPO_URL/archive/refs/heads/main.tar.gz" -o /tmp/cli.tar.gz
 
-# ----------------------------------------------------------
 # 📦 Extract and install
-# ----------------------------------------------------------
 echo "📦 Extracting all files..."
 tar -xzf /tmp/cli.tar.gz -C /tmp
 cp -r /tmp/cli-main/* "$INSTALL_DIR/"
 
-# ----------------------------------------------------------
 # 🔧 Make scripts executable
-# ----------------------------------------------------------
 chmod -R +x "$INSTALL_DIR"
 
-# ----------------------------------------------------------
 # 🧠 Detect shell config file
-# ----------------------------------------------------------
 SHELL_RC=""
 if [ -n "$ZSH_VERSION" ]; then
     SHELL_RC="$HOME/.zshrc"
@@ -61,9 +49,7 @@ else
     SHELL_RC="$HOME/.profile"
 fi
 
-# ----------------------------------------------------------
 # 🛠️ Add to PATH if not already included
-# ----------------------------------------------------------
 if ! grep -q "$INSTALL_DIR" "$SHELL_RC"; then
     echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$SHELL_RC"
     echo "✅ Added $INSTALL_DIR to PATH in $SHELL_RC"
@@ -71,20 +57,14 @@ else
     echo "ℹ️  PATH already includes $INSTALL_DIR"
 fi
 
-# ----------------------------------------------------------
 # 🧹 Cleanup
-# ----------------------------------------------------------
 rm -rf /tmp/cli.tar.gz /tmp/cli-main
 
-# ----------------------------------------------------------
 # 🎉 Done!
-# ----------------------------------------------------------
 echo "✅ Installation complete!"
 echo "📂 Installed directory: $INSTALL_DIR"
 
-# ----------------------------------------------------------
 # 🔄 Source the shell config to apply changes immediately
-# ----------------------------------------------------------
 echo "✅ Added $INSTALL_DIR to PATH in $SHELL_RC"
 echo "🔁 Please run: source $SHELL_RC"
 echo "   or open a new terminal for changes to take effect."

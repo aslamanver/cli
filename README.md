@@ -4,7 +4,7 @@
 - View contents of a tar.gz file: `tar -tzf file.tar.gz`
 - Extract a tar.gz file: `tar -xzf file.tar.gz`
 
-### Install
+### install
 
 ```sh
 bash <(curl -s https://aslamanver.github.io/cli/install)
@@ -16,6 +16,8 @@ bash <(curl -s https://aslamanver.github.io/cli/install)
 
 ```sh
 bash  <(curl  -s https://aslamanver.github.io/cli/enc)
+# or
+enc
 ```
 
 ### cmdx
