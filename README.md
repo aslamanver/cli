@@ -22,14 +22,21 @@ bash  <(curl  -s https://aslamanver.github.io/cli/enc)
 
 `cmdx` is a simple command-line utility to create, manage, and execute custom command shortcuts right from your terminal.
 
+```sh
+cmdx --add <name> <command> # Add or update a shortcut
+cmdx --remove <name> # Remove a shortcut
+cmdx --list # List all shortcuts
+cmdx <name> # Run a saved shortcut
+```
+
 Example usage: `cmdx <your-command-name> "<your-long-command>"`
 
 ```sh
-cmdx add happy-follower "curl -s https://api.github.com/users/aslamanver/followers | jq -r '.[0].avatar_url'"
+cmdx --add happy-follower "curl -s https://api.github.com/users/aslamanver/followers | jq -r '.[0].avatar_url'"
 cmdx happy-follower
 
-cmdx remove happy-follower
-cmdx list
+cmdx --remove happy-follower
+cmdx --list
 ```
 
 That's it! You now have a simple way to manage and execute your custom command shortcuts using `cmdx happy-follower`.
