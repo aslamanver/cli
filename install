@@ -15,7 +15,6 @@ REPO_URL="https://github.com/aslamanver/cli"
 INSTALL_DIR="$HOME/.cli"
 
 echo "🚀 Installing CLI tools from $REPO_URL ..."
-echo ""
 
 # ----------------------------------------------------------
 # 🧩 Check for required dependencies
@@ -80,9 +79,6 @@ rm -rf /tmp/cli.tar.gz /tmp/cli-main
 # ----------------------------------------------------------
 # 🎉 Done!
 # ----------------------------------------------------------
-echo ""
 echo "✅ Installation complete!"
 echo "👉 Run 'source $SHELL_RC' or open a new terminal to start using your CLI tools."
-echo ""
 echo "📂 Installed directory: $INSTALL_DIR"
-echo ""
