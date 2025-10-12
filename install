@@ -80,5 +80,9 @@ rm -rf /tmp/cli.tar.gz /tmp/cli-main
 # 🎉 Done!
 # ----------------------------------------------------------
 echo "✅ Installation complete!"
-echo "👉 Run 'source $SHELL_RC' or open a new terminal to start using your CLI tools."
 echo "📂 Installed directory: $INSTALL_DIR"
+
+# ----------------------------------------------------------
+# 🔄 Source the shell config to apply changes immediately
+# ----------------------------------------------------------
+source $SHELL_RC
