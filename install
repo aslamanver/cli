@@ -1,0 +1,59 @@
+#!/bin/bash
+
+# ==========================================================
+# CLI Installer Script
+# Installs all CLI tools from your GitHub repo
+# and makes them globally accessible.
+# 
+# curl -s https://aslamanver.github.io/cli/install | bash
+# ==========================================================
+
+set -e
+
+REPO_URL="https://github.com/aslamanver/cli"
+INSTALL_DIR="$HOME/.cli"
+
+echo "🚀 Installing CLI tools from $REPO_URL ..."
+
+# Create install directory if missing
+mkdir -p "$INSTALL_DIR"
+
+# Download all files together as tar.gz from main branch
+echo "⬇️  Downloading repository archive..."
+curl -fsSL "$REPO_URL/archive/refs/heads/main.tar.gz" -o /tmp/cli.tar.gz
+
+# Extract all files into install directory
+echo "📦 Extracting all files..."
+tar -xzf /tmp/cli.tar.gz -C /tmp
+cp -r /tmp/cli-main/* "$INSTALL_DIR/"
+
+# Make all scripts executable
+chmod -R +x "$INSTALL_DIR"
+
+# Detect shell config file
+SHELL_RC=""
+if [ -n "$ZSH_VERSION" ]; then
+    SHELL_RC="$HOME/.zshrc"
+elif [ -n "$BASH_VERSION" ]; then
+    SHELL_RC="$HOME/.bashrc"
+else
+    SHELL_RC="$HOME/.profile"
+fi
+
+# Add install directory to PATH if not already there
+if ! grep -q "$INSTALL_DIR" "$SHELL_RC"; then
+    echo "export PATH=\"\$PATH:$INSTALL_DIR\"" >> "$SHELL_RC"
+    echo "✅ Added $INSTALL_DIR to PATH in $SHELL_RC"
+else
+    echo "ℹ️  PATH already includes $INSTALL_DIR"
+fi
+
+# Cleanup temporary files
+rm -rf /tmp/cli.tar.gz /tmp/cli-main
+
+echo ""
+echo "✅ Installation complete!"
+echo "👉 Run 'source $SHELL_RC' or open a new terminal to start using your CLI tools."
+echo ""
+echo "Installed directory: $INSTALL_DIR"
+echo ""

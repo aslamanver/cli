@@ -1,0 +1,71 @@
+#!/bin/bash
+
+CONFIG_FILE="$HOME/.cmdx"
+
+touch "$CONFIG_FILE"
+chmod 600 "$CONFIG_FILE"
+
+RESERVED=("add" "remove" "list")
+
+case "$1" in
+add)
+    NAME="$2"
+    shift 2
+
+    for word in "${RESERVED[@]}"; do
+        if [ "$NAME" == "$word" ]; then
+            echo "❌ Cannot use reserved command name: $NAME"
+            exit 1
+        fi
+    done
+
+    CMD="$*"
+
+    if grep -q "^$NAME=" "$CONFIG_FILE"; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "/^$NAME=/d" "$CONFIG_FILE"
+        else
+            sed -i "/^$NAME=/d" "$CONFIG_FILE"
+        fi
+    fi
+
+    echo "$NAME=\"$CMD\"" | sed 's/[[:space:]]*$//' >> "$CONFIG_FILE"
+    echo "✅ Added/Updated shortcut: $NAME"
+    ;;
+
+remove)
+    NAME="$2"
+    [ -z "$NAME" ] && exit 1
+
+    if grep -q "^$NAME=" "$CONFIG_FILE"; then
+        if [[ "$OSTYPE" == "darwin"* ]]; then
+            sed -i '' "/^$NAME=/d" "$CONFIG_FILE"
+        else
+            sed -i "/^$NAME=/d" "$CONFIG_FILE"
+        fi
+        echo "✅ Removed shortcut: $NAME"
+    else
+        echo "❌ Shortcut not found: $NAME"
+        exit 1
+    fi
+    ;;
+
+  list)
+    sort "$CONFIG_FILE"
+    ;;
+
+  *)
+    if grep -q "^$1=" "$CONFIG_FILE"; then
+        CMD=$(awk -F= -v name="$1" '$1==name {gsub(/^"|"$|\\$/,"",$2); print $2}' "$CONFIG_FILE")
+        read -n 1 -p "⚡ Execute '$1'? Press Enter to continue or any other key to exit: " CONFIRM
+        echo
+        if [[ -z "$CONFIRM" ]]; then
+            eval "$CMD"
+        fi
+    else
+        echo "❌ no such command: $1"
+        exit 1
+    fi
+    ;;
+
+esac
