@@ -7,7 +7,7 @@
 ### Install
 
 ```sh
-base <(curl -s https://aslamanver.github.io/cli/install)
+bash <(curl -s https://aslamanver.github.io/cli/install)
 ```
 
 ### enc
