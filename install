@@ -85,5 +85,6 @@ echo "📂 Installed directory: $INSTALL_DIR"
 # ----------------------------------------------------------
 # 🔄 Source the shell config to apply changes immediately
 # ----------------------------------------------------------
-echo "🔄 Sourcing $SHELL_RC to apply changes..."
-source $SHELL_RC
+echo "✅ Added $INSTALL_DIR to PATH in $SHELL_RC"
+echo "🔁 Please run: source $SHELL_RC"
+echo "   or open a new terminal for changes to take effect."
