@@ -4,6 +4,12 @@
 - View contents of a tar.gz file: `tar -tzf file.tar.gz`
 - Extract a tar.gz file: `tar -xzf file.tar.gz`
 
+### Install
+
+```sh
+base <(curl -s https://aslamanver.github.io/cli/install)
+```
+
 ### enc.sh
 
 `enc.sh` is a simple shell script that provides encryption and decryption functionalities using OpenSSL. It allows you to securely encrypt and decrypt files using a password.

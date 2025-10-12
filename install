@@ -5,7 +5,7 @@
 # Installs all CLI tools from your GitHub repo
 # and makes them globally accessible.
 # 
-# curl -s https://aslamanver.github.io/cli/install | bash
+# base <(curl -s https://aslamanver.github.io/cli/install)
 # ==========================================================
 
 set -e
