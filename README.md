@@ -10,15 +10,15 @@
 base <(curl -s https://aslamanver.github.io/cli/install)
 ```
 
-### enc.sh
+### enc
 
-`enc.sh` is a simple shell script that provides encryption and decryption functionalities using OpenSSL. It allows you to securely encrypt and decrypt files using a password.
+`enc` is a simple shell script that provides encryption and decryption functionalities using OpenSSL. It allows you to securely encrypt and decrypt files using a password.
 
 ```sh
 bash  <(curl  -s https://aslamanver.github.io/cli/enc)
 ```
 
-### cmdx.sh
+### cmdx
 
 `cmdx` is a simple command-line utility to create, manage, and execute custom command shortcuts right from your terminal.
 
