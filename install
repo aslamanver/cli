@@ -14,8 +14,6 @@ set -e
 REPO_URL="https://github.com/aslamanver/cli"
 INSTALL_DIR="$HOME/.cli"
 
-echo "🚀 Installing CLI tools from $REPO_URL ..."
-
 # ----------------------------------------------------------
 # 🧩 Check for required dependencies
 # ----------------------------------------------------------
@@ -25,6 +23,8 @@ for cmd in curl tar; do
     exit 1
   fi
 done
+
+echo "🚀 Installing CLI tools from $REPO_URL ..."
 
 # ----------------------------------------------------------
 # 📁 Create install directory
